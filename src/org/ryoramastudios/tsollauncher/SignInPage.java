@@ -26,8 +26,13 @@ public class SignInPage {
                     userText = email.getText();
                     pwdText = password.getText();
                     if (iAgreeToTheCheckBox.isSelected()) {
-                        if (userText.equalsIgnoreCase("realz@gmail.com") && pwdText.equals("pogs1")) {
+                        if (userText.equalsIgnoreCase("p") && pwdText.equals("p")) {
                             JOptionPane.showMessageDialog(null, "Login Successful");
+                            frame.setContentPane(PlayPage.Instance.playPage);
+                            frame.validate();
+                            frame.setResizable(true);
+                            frame.setLocation(600, 200);
+                            frame.setSize(800, 600);
                         } else {
                             JOptionPane.showMessageDialog(null, "Login Unsuccessful, Invalid Username or Password");
                         }
