@@ -12,6 +12,7 @@ public class SignInPage {
     private JTextField email;
     private JCheckBox iAgreeToTheCheckBox;
     private JButton signInButton;
+    private JCheckBox showPassword;
     public static JFrame frame = new JFrame("TSOL Launcher");
     public static boolean signIn = false;
 
@@ -24,13 +25,24 @@ public class SignInPage {
                 userText = email.getText();
                 pwdText = password.getText();
                 if (iAgreeToTheCheckBox.isSelected()) {
-                    if (userText.equalsIgnoreCase("realz@gmail.com") && pwdText.equalsIgnoreCase("pogs1")) {
+                    if (userText.equalsIgnoreCase("realz@gmail.com") && pwdText.equals("pogs1")) {
                         JOptionPane.showMessageDialog(null, "Login Successful");
-                    } else if (!userText.equalsIgnoreCase("realz@gmail.com") && !pwdText.equalsIgnoreCase("pogs1")) {
+                    } else {
                         JOptionPane.showMessageDialog(null, "Login Unsuccessful, Invalid Username or Password");
                     }
                 } else if (!iAgreeToTheCheckBox.isSelected()) {
                     JOptionPane.showMessageDialog(null, "Agree to the TOS!");
+                }
+            }
+        });
+
+        showPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (showPassword.isSelected()) {
+                    password.setEchoChar((char) 0);
+                } else {
+                    password.setEchoChar('*');
                 }
             }
         });
