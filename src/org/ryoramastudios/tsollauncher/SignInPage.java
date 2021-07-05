@@ -5,6 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Scanner;
 
 public class SignInPage {
     private JPanel loginPage;
@@ -22,17 +28,47 @@ public class SignInPage {
             public void actionPerformed(ActionEvent e) {
                 String userText;
                 String pwdText;
-                userText = email.getText();
-                pwdText = password.getText();
-                if (iAgreeToTheCheckBox.isSelected()) {
-                    if (userText.equalsIgnoreCase("realz@gmail.com") && pwdText.equals("pogs1")) {
-                        JOptionPane.showMessageDialog(null, "Login Successful");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Login Unsuccessful, Invalid Username or Password");
+
+                String lineText;
+
+                try {
+                    URL database = new URL(Config.databaseURL);
+
+                    BufferedReader read = new BufferedReader(
+                            new InputStreamReader(database.openStream()));
+
+                    while ((lineText = read.readLine()) != null) {
+
+                        String[] sArray = lineText.split(",");
+
+                        System.out.println(sArray[0]);
+                        System.out.println(sArray[1]);
+
+                        userText = email.getText();
+                        pwdText = password.getText();
+                        if (iAgreeToTheCheckBox.isSelected()) {
+                            if (userText.equalsIgnoreCase(sArray[0]) && pwdText.equals(sArray[1])) {
+                                JOptionPane.showMessageDialog(null, "Login Successful");
+                                signIn = true;
+                                frame.setContentPane(new PlayPage().playPage);
+                                PlayPage.initPlayPage();
+                                break;
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Login Unsuccessful, Invalid Username or Password");
+                                break;
+                            }
+                        } else if (!iAgreeToTheCheckBox.isSelected()) {
+                            JOptionPane.showMessageDialog(null, "Agree to the TOS!");
+                            break;
+                        }
                     }
-                } else if (!iAgreeToTheCheckBox.isSelected()) {
-                    JOptionPane.showMessageDialog(null, "Agree to the TOS!");
+                    read.close();
+                } catch (MalformedURLException malformedURLException) {
+                    malformedURLException.printStackTrace();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
+
             }
         });
 

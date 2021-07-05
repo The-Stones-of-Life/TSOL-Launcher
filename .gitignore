@@ -1,3 +1,5 @@
 /.idea/
-TSOL Launcher.iml
 /out/
+/src/META-INF/
+/TSOL-Launcher.iml
+/src/org/ryoramastudios/tsollauncher/Config.java
