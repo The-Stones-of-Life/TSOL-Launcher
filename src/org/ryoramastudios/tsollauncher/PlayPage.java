@@ -3,7 +3,7 @@ package org.ryoramastudios.tsollauncher;
 import javax.swing.*;
 
 public class PlayPage {
-
+  
     public JPanel playPage;
     private JButton launchButton;
     private JButton button1;
