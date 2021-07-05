@@ -19,6 +19,7 @@ public class SignInPage {
     private JCheckBox iAgreeToTheCheckBox;
     private JButton signInButton;
     private JCheckBox showPassword;
+    private JCheckBox rememberMe;
     public static JFrame frame = new JFrame("TSOL Launcher");
     public static boolean signIn = false;
 
@@ -49,7 +50,6 @@ public class SignInPage {
                         if (iAgreeToTheCheckBox.isSelected()) {
                             if (userText.equalsIgnoreCase(sArray[0]) && pwdText.equals(sArray[1])) {
                                 JOptionPane.showMessageDialog(null, "Login Successful");
-                                signIn = true;
                                 frame.setContentPane(new PlayPage().playPage);
                                 PlayPage.initPlayPage();
                                 break;
@@ -82,26 +82,41 @@ public class SignInPage {
                 }
             }
         });
-    }
 
-    public static void main(String[] args) {
-        frame.setContentPane(new SignInPage().loginPage);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.addWindowListener(new WindowAdapter() {
+        rememberMe.addActionListener(new ActionListener() {
             @Override
-            public void windowClosing(WindowEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?",
-                        "Exit?", JOptionPane.YES_NO_OPTION);
-
-                if (confirm == JOptionPane.YES_OPTION) {
-                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                } else {
-                    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            public void actionPerformed(ActionEvent e) {
+                if (rememberMe.isSelected()) {
+                    signIn = true;
                 }
             }
         });
+    }
+
+    public static void main(String[] args) {
+        if (!signIn) {
+            frame.setContentPane(new SignInPage().loginPage);
+            frame.pack();
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
+            frame.setResizable(false);
+            frame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    int confirm = JOptionPane.showConfirmDialog(frame, "Are you sure you want to exit?",
+                            "Exit?", JOptionPane.YES_NO_OPTION);
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    } else {
+                        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                    }
+                }
+            });
+        } else if (signIn) {
+            frame.setContentPane(new PlayPage().playPage);
+            frame.setVisible(true);
+            PlayPage.initPlayPage();
+        }
     }
 }
