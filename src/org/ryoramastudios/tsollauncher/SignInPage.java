@@ -20,6 +20,7 @@ public class SignInPage {
     private JButton signInButton;
     private JCheckBox showPassword;
     private JCheckBox rememberMe;
+    private JButton registerAccount;
     public static JFrame frame = new JFrame("TSOL Launcher");
     public static boolean signIn = false;
 
@@ -91,7 +92,17 @@ public class SignInPage {
                 }
             }
         });
+
+        registerAccount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterPage.initRegisterPage();
+                frame.setContentPane(new RegisterPage().registerPage);
+            }
+        });
     }
+
+
 
     public static void main(String[] args) {
         if (!signIn) {
