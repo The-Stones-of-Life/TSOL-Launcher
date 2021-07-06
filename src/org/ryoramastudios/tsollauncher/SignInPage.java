@@ -73,13 +73,21 @@ public class SignInPage {
             }
         });
 
-        showPassword.addActionListener(new ActionListener() {
+            showPassword.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (showPassword.isSelected()) {
+                        password.setEchoChar((char) 0);
+                    } else {
+                        password.setEchoChar('*');
+                    }
+                }
+            });
+        rememberMe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (showPassword.isSelected()) {
-                    password.setEchoChar((char) 0);
-                } else {
-                    password.setEchoChar('*');
+                if (rememberMe.isSelected()) {
+                    signIn = true;
                 }
             }
         });
