@@ -54,3 +54,5 @@
         </constraints>
         <properties>
           <text value="Button"/>
+        </properties>
+</form>
