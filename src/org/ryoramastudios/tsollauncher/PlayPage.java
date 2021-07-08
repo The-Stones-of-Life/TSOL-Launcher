@@ -6,11 +6,11 @@ public class PlayPage {
   
     public JPanel playPage;
     private JButton launchButton;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
+    private JButton changelogsButton;
+    private JButton newsButton;
+    private JButton playButton;
+    private JButton profileButton;
+    private JButton settingsButton;
 
 
 
