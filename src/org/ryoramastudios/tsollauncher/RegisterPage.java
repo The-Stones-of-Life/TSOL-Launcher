@@ -10,17 +10,17 @@ public class RegisterPage {
     private JButton signUpButton;
     private JPasswordField passwordField;
     private JTextField usernameField;
-    private JButton showPasswordButton;
     private JLabel username;
     private JLabel password;
     private JLabel email;
-    private JButton rememberMeButton;
+    private JCheckBox rememberMeCheckBox;
+    private JCheckBox showPasswordCheckBox;
 
     public RegisterPage() {
-        showPasswordButton.addActionListener(new ActionListener() {
+        showPasswordCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (showPasswordButton.isSelected()) {
+                if (showPasswordCheckBox.isSelected()) {
                     passwordField.setEchoChar((char) 0);
                 } else {
                     passwordField.setEchoChar('*');
@@ -31,6 +31,7 @@ public class RegisterPage {
 
     public static void initRegisterPage() {
         SignInPage.frame.revalidate();
+        SignInPage.frame.setResizable(true);
         SignInPage.frame.setSize(400, 150);
         SignInPage.frame.setLocationRelativeTo(null);
     }
