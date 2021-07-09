@@ -112,13 +112,13 @@ public class SignInPage {
 
 
 
-    public static void main(String[] args) {
+    public static void SignInPageInit() {
         if (!signIn) {
             frame.setContentPane(new SignInPage().loginPage);
             frame.pack();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
-            frame.setResizable(false);
+            frame.setResizable(true);
             frame.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {

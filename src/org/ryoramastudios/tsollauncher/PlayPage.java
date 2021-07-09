@@ -7,7 +7,7 @@ public class PlayPage {
     public JPanel playPage;
     private JButton launchButton;
     private JButton changelogsButton;
-    private JButton newsButton;
+    private JButton versionsButton;
     private JButton playButton;
     private JButton profileButton;
     private JButton settingsButton;
